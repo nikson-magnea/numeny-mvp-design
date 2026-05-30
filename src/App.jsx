@@ -516,22 +516,30 @@ function CartBottomSheet({ cart, total, onClose }) {
               </div>
 
               <div className="mt-3 rounded-2xl bg-white p-3 ring-1 ring-black/5">
-                <div className="mb-2 flex items-center justify-between gap-3">
-                  <span className="text-sm font-black text-[#1F1F1F]">Resumo para o garçom</span>
-                  <span className="shrink-0 rounded-full bg-[#FFF3E0] px-2 py-1 text-[10px] font-black text-[#E63946]">Mesa 12</span>
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <span className="text-sm font-black text-[#1F1F1F]">Resumo para o garçom</span>
+                <span className="shrink-0 rounded-full bg-[#FFF3E0] px-2 py-1 text-[10px] font-black text-[#E63946]">Mesa 12</span>
+              </div>
+              <div className="overflow-hidden rounded-2xl border border-black/5">
+                <div className="grid grid-cols-[52px_1fr_44px_68px] gap-2 bg-neutral-50 px-2 py-2 text-[10px] font-black uppercase tracking-[0.06em] text-neutral-400">
+                  <div>Cód.</div>
+                  <div>Descrição</div>
+                  <div className="text-center">Qtde</div>
+                  <div className="text-right">Valor</div>
                 </div>
-                <div className="grid gap-2">
+                <div className="divide-y divide-black/5">
                   {cart.map((item) => (
-                    <div key={item.id} className="flex items-center justify-between gap-3 text-sm">
-                      <span className="min-w-0 truncate font-semibold text-neutral-700">{item.qty}x {item.name}</span>
-                      <span className="shrink-0 font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</span>
+                    <div key={item.id} className="grid grid-cols-[52px_1fr_44px_68px] gap-2 px-2 py-3 text-xs">
+                      <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
+                      <div className="min-w-0 truncate font-semibold text-neutral-700">{item.name}</div>
+                      <div className="text-center font-black text-neutral-700">{item.qty}</div>
+                      <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 border-t border-black/10 pt-3 text-xs leading-5 text-neutral-500">
-                  Use esta tela para o atendente anotar o pedido, sem integração com cozinha nesta fase.
-                </div>
               </div>
+              <div className="mt-3 border-t border-black/10 pt-3 text-xs leading-5 text-neutral-500">Use esta tela para o atendente anotar o pedido.</div>
+            </div>
             </div>
           )}
 
@@ -578,24 +586,30 @@ function WaiterOrderView({ cart, total, onClose, onBack }) {
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-white/45">Pedido de mesa</div>
               <h2 className="mt-1 text-3xl font-black">Mesa 12</h2>
-              <p className="mt-1 text-sm text-white/60">Mostrar ao garçom para anotar</p>
+              <p className="mt-1 text-sm text-white/60">Lista simples para o garçom anotar</p>
             </div>
             <button onClick={onClose} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-xl text-white">×</button>
           </div>
         </div>
 
         <div className="subtle-scrollbar flex-1 overflow-y-auto p-5">
-          <div className="grid gap-3">
-            {cart.map((item) => (
-              <div key={item.id} className="flex items-center gap-3 rounded-3xl bg-neutral-50 p-4 ring-1 ring-black/5">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-[#FFF3E0] text-3xl">{item.image}</div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-lg font-black">{item.qty}x {item.name}</div>
-                  <div className="mt-1 text-xs text-neutral-500">Observação: sem cebola</div>
+          <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+            <div className="grid grid-cols-[56px_1fr_48px_76px] gap-2 bg-neutral-50 px-3 py-3 text-[10px] font-black uppercase tracking-[0.08em] text-neutral-400">
+              <div>Cód.</div>
+              <div>Descrição</div>
+              <div className="text-center">Qtde</div>
+              <div className="text-right">Valor</div>
+            </div>
+            <div className="divide-y divide-black/5">
+              {cart.map((item) => (
+                <div key={item.id} className="grid grid-cols-[56px_1fr_48px_76px] gap-2 px-3 py-4 text-sm">
+                  <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
+                  <div className="min-w-0 truncate font-black text-[#1F1F1F]">{item.name}</div>
+                  <div className="text-center font-black text-neutral-700">{item.qty}</div>
+                  <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                 </div>
-                <div className="text-sm font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="mt-5 rounded-3xl bg-[#FFF3E0] p-4 ring-1 ring-black/5">
@@ -604,7 +618,7 @@ function WaiterOrderView({ cart, total, onClose, onBack }) {
           </div>
         </div>
 
-        <div className="border-t border-black/5 p-5">
+        <div className="border-t border-black/5 p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
           <div className="mb-4 flex items-center justify-between text-lg font-black">
             <span>Total estimado</span>
             <span className="text-[#E63946]">{formatCurrency(total)}</span>
@@ -677,18 +691,29 @@ function CartSummary({ cart, total }) {
             </div>
 
             <div className="mt-3 rounded-2xl bg-white p-3 ring-1 ring-black/5">
-              <div className="mb-2 text-sm font-black">Resumo para o garçom</div>
-              <div className="grid gap-2">
-                {cart.map((item) => (
-                  <div key={item.id} className="flex items-center justify-between gap-3 text-sm">
-                    <span className="min-w-0 truncate font-semibold text-neutral-700">{item.qty}x {item.name}</span>
-                    <span className="shrink-0 font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</span>
-                  </div>
-                ))}
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <span className="text-sm font-black text-[#1F1F1F]">Resumo para o garçom</span>
+                <span className="shrink-0 rounded-full bg-[#FFF3E0] px-2 py-1 text-[10px] font-black text-[#E63946]">Mesa 12</span>
               </div>
-              <div className="mt-3 border-t border-black/10 pt-3 text-xs leading-5 text-neutral-500">
-                Tela para o garçom bater o olho e anotar o pedido.
+              <div className="overflow-hidden rounded-2xl border border-black/5">
+                <div className="grid grid-cols-[52px_1fr_44px_68px] gap-2 bg-neutral-50 px-2 py-2 text-[10px] font-black uppercase tracking-[0.06em] text-neutral-400">
+                  <div>Cód.</div>
+                  <div>Descrição</div>
+                  <div className="text-center">Qtde</div>
+                  <div className="text-right">Valor</div>
+                </div>
+                <div className="divide-y divide-black/5">
+                  {cart.map((item) => (
+                    <div key={item.id} className="grid grid-cols-[52px_1fr_44px_68px] gap-2 px-2 py-3 text-xs">
+                      <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
+                      <div className="min-w-0 truncate font-semibold text-neutral-700">{item.name}</div>
+                      <div className="text-center font-black text-neutral-700">{item.qty}</div>
+                      <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
+              <div className="mt-3 border-t border-black/10 pt-3 text-xs leading-5 text-neutral-500">Use esta tela para o atendente anotar o pedido.</div>
             </div>
           </div>
         )}
@@ -737,24 +762,30 @@ function DesktopWaiterModal({ cart, total, onClose }) {
             <div>
               <div className="text-xs font-black uppercase tracking-[0.18em] text-white/45">Pedido de mesa</div>
               <h2 className="mt-1 text-3xl font-black">Mesa 12</h2>
-              <p className="mt-1 text-sm text-white/65">Mostrar ao garçom para anotar</p>
+              <p className="mt-1 text-sm text-white/65">Lista simples para o garçom anotar</p>
             </div>
             <button onClick={onClose} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-xl text-white">×</button>
           </div>
         </div>
 
         <div className="subtle-scrollbar max-h-[65vh] overflow-y-auto p-6">
-          <div className="grid gap-3">
-            {cart.map((item) => (
-              <div key={item.id} className="flex items-center gap-3 rounded-3xl bg-neutral-50 p-4 ring-1 ring-black/5">
-                <div className="grid h-14 w-14 place-items-center rounded-2xl bg-[#FFF3E0] text-3xl">{item.image}</div>
-                <div className="min-w-0 flex-1">
-                  <div className="text-lg font-black">{item.qty}x {item.name}</div>
-                  <div className="mt-1 text-xs text-neutral-500">Observação: sem cebola</div>
+          <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
+            <div className="grid grid-cols-[80px_1fr_70px_110px] gap-3 bg-neutral-50 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
+              <div>Código</div>
+              <div>Descrição</div>
+              <div className="text-center">Qtde</div>
+              <div className="text-right">Valor</div>
+            </div>
+            <div className="divide-y divide-black/5">
+              {cart.map((item) => (
+                <div key={item.id} className="grid grid-cols-[80px_1fr_70px_110px] gap-3 px-4 py-4 text-sm">
+                  <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
+                  <div className="min-w-0 text-base font-black text-[#1F1F1F]">{item.name}</div>
+                  <div className="text-center font-black text-neutral-700">{item.qty}</div>
+                  <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                 </div>
-                <div className="text-sm font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="mt-5 rounded-3xl bg-[#FFF3E0] p-4 ring-1 ring-black/5">
