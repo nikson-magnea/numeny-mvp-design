@@ -521,7 +521,7 @@ function CartBottomSheet({ cart, total, onClose }) {
                 <span className="shrink-0 rounded-full bg-[#FFF3E0] px-2 py-1 text-[10px] font-black text-[#E63946]">Mesa 12</span>
               </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
-                <div className="grid grid-cols-[52px_1fr_44px_68px] gap-2 bg-neutral-50 px-2 py-2 text-[10px] font-black uppercase tracking-[0.06em] text-neutral-400">
+                <div className="grid grid-cols-[48px_minmax(0,1fr)_42px_68px] gap-2 bg-neutral-50 px-2 py-2 text-[10px] font-black uppercase tracking-[0.06em] text-neutral-400">
                   <div>Cód.</div>
                   <div>Descrição</div>
                   <div className="text-center">Qtde</div>
@@ -529,9 +529,9 @@ function CartBottomSheet({ cart, total, onClose }) {
                 </div>
                 <div className="divide-y divide-black/5">
                   {cart.map((item) => (
-                    <div key={item.id} className="grid grid-cols-[52px_1fr_44px_68px] gap-2 px-2 py-3 text-xs">
+                    <div key={item.id} className="grid grid-cols-[48px_minmax(0,1fr)_42px_68px] gap-2 px-2 py-3 text-xs">
                       <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
-                      <div className="min-w-0 truncate font-semibold text-neutral-700">{item.name}</div>
+                      <div className="min-w-0 whitespace-normal break-words font-semibold leading-4 text-neutral-700">{item.name}</div>
                       <div className="text-center font-black text-neutral-700">{item.qty}</div>
                       <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                     </div>
@@ -594,7 +594,7 @@ function WaiterOrderView({ cart, total, onClose, onBack }) {
 
         <div className="subtle-scrollbar flex-1 overflow-y-auto p-5">
           <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
-            <div className="grid grid-cols-[56px_1fr_48px_76px] gap-2 bg-neutral-50 px-3 py-3 text-[10px] font-black uppercase tracking-[0.08em] text-neutral-400">
+            <div className="grid grid-cols-[52px_minmax(0,1fr)_42px_76px] gap-2 bg-neutral-50 px-3 py-3 text-[10px] font-black uppercase tracking-[0.08em] text-neutral-400">
               <div>Cód.</div>
               <div>Descrição</div>
               <div className="text-center">Qtde</div>
@@ -602,11 +602,11 @@ function WaiterOrderView({ cart, total, onClose, onBack }) {
             </div>
             <div className="divide-y divide-black/5">
               {cart.map((item) => (
-                <div key={item.id} className="grid grid-cols-[56px_1fr_48px_76px] gap-2 px-3 py-4 text-sm">
+                <div key={item.id} className="grid grid-cols-[52px_minmax(0,1fr)_42px_76px] gap-2 px-3 py-4 text-sm">
                   <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
-                  <div className="min-w-0 truncate font-black text-[#1F1F1F]">{item.name}</div>
+                  <div className="min-w-0 whitespace-normal break-words text-[13px] font-black leading-4 text-[#1F1F1F]">{item.name}</div>
                   <div className="text-center font-black text-neutral-700">{item.qty}</div>
-                  <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
+                  <div className="text-right text-[13px] font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                 </div>
               ))}
             </div>
@@ -696,7 +696,7 @@ function CartSummary({ cart, total }) {
                 <span className="shrink-0 rounded-full bg-[#FFF3E0] px-2 py-1 text-[10px] font-black text-[#E63946]">Mesa 12</span>
               </div>
               <div className="overflow-hidden rounded-2xl border border-black/5">
-                <div className="grid grid-cols-[52px_1fr_44px_68px] gap-2 bg-neutral-50 px-2 py-2 text-[10px] font-black uppercase tracking-[0.06em] text-neutral-400">
+                <div className="grid grid-cols-[48px_minmax(0,1fr)_42px_68px] gap-2 bg-neutral-50 px-2 py-2 text-[10px] font-black uppercase tracking-[0.06em] text-neutral-400">
                   <div>Cód.</div>
                   <div>Descrição</div>
                   <div className="text-center">Qtde</div>
@@ -704,9 +704,9 @@ function CartSummary({ cart, total }) {
                 </div>
                 <div className="divide-y divide-black/5">
                   {cart.map((item) => (
-                    <div key={item.id} className="grid grid-cols-[52px_1fr_44px_68px] gap-2 px-2 py-3 text-xs">
+                    <div key={item.id} className="grid grid-cols-[48px_minmax(0,1fr)_42px_68px] gap-2 px-2 py-3 text-xs">
                       <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
-                      <div className="min-w-0 truncate font-semibold text-neutral-700">{item.name}</div>
+                      <div className="min-w-0 whitespace-normal break-words font-semibold leading-4 text-neutral-700">{item.name}</div>
                       <div className="text-center font-black text-neutral-700">{item.qty}</div>
                       <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                     </div>
@@ -770,7 +770,7 @@ function DesktopWaiterModal({ cart, total, onClose }) {
 
         <div className="subtle-scrollbar max-h-[65vh] overflow-y-auto p-6">
           <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
-            <div className="grid grid-cols-[80px_1fr_70px_110px] gap-3 bg-neutral-50 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
+            <div className="grid grid-cols-[80px_minmax(0,1fr)_70px_110px] gap-3 bg-neutral-50 px-4 py-3 text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
               <div>Código</div>
               <div>Descrição</div>
               <div className="text-center">Qtde</div>
@@ -778,9 +778,9 @@ function DesktopWaiterModal({ cart, total, onClose }) {
             </div>
             <div className="divide-y divide-black/5">
               {cart.map((item) => (
-                <div key={item.id} className="grid grid-cols-[80px_1fr_70px_110px] gap-3 px-4 py-4 text-sm">
+                <div key={item.id} className="grid grid-cols-[80px_minmax(0,1fr)_70px_110px] gap-3 px-4 py-4 text-sm">
                   <div className="font-black text-[#E63946]">P{String(item.id).padStart(3, "0")}</div>
-                  <div className="min-w-0 text-base font-black text-[#1F1F1F]">{item.name}</div>
+                  <div className="min-w-0 whitespace-normal break-words text-base font-black leading-5 text-[#1F1F1F]">{item.name}</div>
                   <div className="text-center font-black text-neutral-700">{item.qty}</div>
                   <div className="text-right font-black text-[#E63946]">{formatCurrency(item.price * item.qty)}</div>
                 </div>
